@@ -1,0 +1,259 @@
+/* 
+
+1)	Print the name of the country, year it played, and stadium where it was played, for the country that won maximum number of matches with the given data. */
+
+WITH TEMP1 AS 
+(
+    SELECT DISTINCT
+        YEAR,
+        MATCHID,
+        ROUNDID,
+        HOME_TEAM_INITIALS AS TEAM_INIT, HOME_TEAM_NAME AS TEAM_NAME
+    FROM
+        WORLD_CUP_MATCHES
+    WHERE
+        HOME_TEAM_GOALS > AWAY_TEAM_GOALS
+    UNION
+    SELECT DISTINCT
+        YEAR,
+        MATCHID,
+        ROUNDID,
+        AWAY_TEAM_INITIALS AS TEAM_INIT, AWAY_TEAM_NAME AS TEAM_NAME
+    FROM
+        WORLD_CUP_MATCHES
+    WHERE
+        HOME_TEAM_GOALS < AWAY_TEAM_GOALS
+),
+TEMP2 AS (
+    SELECT
+        TEAM_INIT,
+        COUNT(TEAM_INIT) AS WIN_COUNT
+    FROM
+        TEMP1
+    GROUP BY
+        TEAM_INIT
+    ORDER BY
+        WIN_COUNT DESC FETCH NEXT 1 ROWS ONLY
+)
+SELECT
+    TEMP1.TEAM_INIT AS TEAM_INITIAL, TEMP1.TEAM_NAME,
+    TEMP1.YEAR,
+    WM.STADIUM,
+    WM.CITY,
+    TEMP2.WIN_COUNT
+FROM
+    TEMP1
+INNER JOIN
+    TEMP2 ON TEMP1.TEAM_INIT = TEMP2.TEAM_INIT   
+INNER JOIN
+    WORLD_CUP_MATCHES WM ON WM.MATCHID = TEMP1.MATCHID
+                          AND WM.ROUNDID = TEMP1.ROUNDID;
+
+
+/* 2)	Print the player details who scored the maximum goal in every match won */
+
+WITH temp1 AS (
+    SELECT
+        WM.YEAR,
+        WP.PLAYER_NAME,
+        WP.TEAM_INITIALS,
+        WP.SHIRT_NUMBER,
+        WP.POSITION,
+        SUM(LENGTH(WP.EVENT) - LENGTH(REPLACE(WP.EVENT, 'G', ''))) AS TOTAL_GOAL,
+        WP.MATCHID,
+        WP.ROUNDID
+    FROM
+        WORLD_CUP_PLAYERS WP
+    INNER JOIN (
+        SELECT DISTINCT
+            YEAR,
+            MATCHID, ROUNDID,
+            HOME_TEAM_INITIALS AS COUNTRY
+        FROM
+            WORLD_CUP_MATCHES
+        WHERE
+            HOME_TEAM_GOALS > AWAY_TEAM_GOALS
+        UNION
+        SELECT DISTINCT
+            YEAR,
+            MATCHID, ROUNDID,
+            AWAY_TEAM_INITIALS AS COUNTRY
+        FROM
+            WORLD_CUP_MATCHES
+        WHERE
+            HOME_TEAM_GOALS < AWAY_TEAM_GOALS
+    ) WM ON WP.MATCHID = WM.MATCHID
+           AND WP.ROUNDID = WM.ROUNDID
+           AND WP.TEAM_INITIALS = WM.COUNTRY
+    WHERE
+        LENGTH(WP.EVENT) - LENGTH(REPLACE(WP.EVENT, 'G', '')) > 0
+    GROUP BY
+        WM.YEAR,
+        WP.PLAYER_NAME,
+        WP.MATCHID,
+        WP.ROUNDID,
+        WP.TEAM_INITIALS,
+        WP.SHIRT_NUMBER,
+        WP.POSITION
+),
+temp2 AS (
+    SELECT
+        MATCHID,
+        ROUNDID,
+        MAX(TOTAL_GOAL) as MAX_TOTAL_GOAL
+    FROM
+        temp1
+    GROUP BY
+        MATCHID,
+        ROUNDID
+)
+SELECT
+    PLAYER_NAME,
+    TEAM_INITIALS AS COUNTRY,
+    SHIRT_NUMBER,
+    POSITION,
+    TOTAL_GOAL,
+    temp1.MATCHID,
+    temp1.ROUNDID,
+    YEAR
+FROM
+    temp1
+INNER JOIN
+    temp2 ON temp1.MATCHID = temp2.MATCHID
+            AND temp1.ROUNDID = temp2.ROUNDID
+            AND temp1.TOTAL_GOAL = temp2.MAX_TOTAL_GOAL
+ORDER BY
+    temp1.TOTAL_GOAL DESC;
+
+
+
+/* 3)	Print the world cup year, player who scored maximum goals in any match and order by the number of goals */
+
+WITH temp1 AS (
+    SELECT WM.YEAR,
+           WP.PLAYER_NAME,
+           SUM(LENGTH(WP.EVENT) - LENGTH(REPLACE(WP.EVENT, 'G', ''))) AS TOTAL_GOAL,
+           WP.MATCHID
+    FROM WORLD_CUP_PLAYERS WP
+    LEFT OUTER JOIN (
+        SELECT DISTINCT YEAR, MATCHID
+        FROM WORLD_CUP_MATCHES
+    ) WM ON WP.MATCHID = WM.MATCHID
+    WHERE LENGTH(WP.EVENT) - LENGTH(REPLACE(WP.EVENT, 'G', '')) > 0
+	GROUP BY WM.YEAR, WP.PLAYER_NAME, WP.MATCHID
+),
+temp2 AS (
+    SELECT MATCHID, MAX(TOTAL_GOAL) as TOTAL_GOAL
+    FROM temp1
+    GROUP BY MATCHID
+)
+SELECT *
+FROM temp1
+INNER JOIN temp2 ON temp1.MATCHID = temp2.MATCHID AND temp1.TOTAL_GOAL = temp2.TOTAL_GOAL ORDER BY temp1.TOTAL_GOAL DESC;
+
+
+/* 4)	Retrieve the names of countries participated (qualified) most number of times in 21st century.*/
+SELECT COUNTRY, COUNT(COUNTRY) AS PARTICIPATION
+FROM (
+    SELECT *
+    FROM (SELECT DISTINCT YEAR, HOME_TEAM_NAME AS COUNTRY FROM WORLD_CUP_MATCHES WHERE YEAR>2000)
+    UNION
+    (SELECT DISTINCT YEAR, AWAY_TEAM_NAME AS COUNTRY FROM WORLD_CUP_MATCHES WHERE YEAR>2000)
+    )
+    GROUP BY COUNTRY
+    ORDER BY PARTICIPATION DESC
+    FETCH NEXT 1 ROWS WITH TIES;
+
+
+/* 5)	How many times (years) USA qualified to play world cups? */
+SELECT COUNT(*) AS USA_QUALIFIED_NO
+FROM (
+    SELECT DISTINCT YEAR
+    FROM WORLD_CUP_MATCHES
+    WHERE HOME_TEAM_NAME='USA' OR AWAY_TEAM_NAME='USA'
+    );
+
+/* 6)	How many times has USA played a game as away team? */
+
+SELECT COUNT(AWAY_TEAM_NAME) AS USA_AWAYTEAM_NO FROM WORLD_CUP_MATCHES WHERE AWAY_TEAM_NAME='USA';
+
+/* 7)	Which player has scored maximum number of goals so far? */
+
+SELECT PLAYER_NAME, GOALS AS MAX_GOALS
+FROM (
+    SELECT
+        PLAYER_NAME,
+        SUM(LENGTH(EVENT) - LENGTH(REPLACE(EVENT, 'G', ''))) AS GOALS
+    FROM
+        WORLD_CUP_PLAYERS
+    WHERE LENGTH(EVENT) - LENGTH(REPLACE(EVENT, 'G', '')) > 0
+    GROUP BY PLAYER_NAME
+)
+ORDER BY GOALS DESC
+FETCH NEXT 1 ROWS WITH TIES;
+
+/* 8)	Which city has hosted the game most number of times? */
+select CITY, count(*)
+from WORLD_CUP_MATCHES
+group by CITY
+having count(CITY) = (
+    SELECT MAX(CITY_MAX)
+    FROM (SELECT COUNT(*) AS CITY_MAX, CITY FROM WORLD_CUP_MATCHES GROUP BY CITY)
+    );
+
+/* 9)	Find all the matches played with country ‘Brazil’. */
+SELECT * from WORLD_CUP_MATCHES where HOME_TEAM_NAME = 'Brazil' or AWAY_TEAM_NAME = 'Brazil';
+
+/* 10)	Retrieve the names of the players who have scored at least one goal, the player’s country, and the number of goals each player scored. Order the result by number of goals scored in descending order. */
+
+SELECT PLAYER_NAME, TEAM_INITIALS,HOME_TEAM_NAME, SUM(SUM_GOAL) AS Total_Goal
+FROM (
+    SELECT PLAYER_NAME,TEAM_INITIALS, LENGTH(EVENT) - LENGTH(REPLACE(EVENT, 'G', '')) AS SUM_GOAL,HOME_TEAM_NAME
+    FROM (
+        WORLD_CUP_PLAYERS LEFT OUTER JOIN (
+            SELECT DISTINCT HOME_TEAM_NAME, HOME_TEAM_INITIALS
+            FROM WORLD_CUP_MATCHES
+            )
+            ON TEAM_INITIALS = HOME_TEAM_INITIALS
+        )
+WHERE LENGTH(EVENT) - LENGTH(REPLACE(EVENT, 'G', ''))>0
+)
+GROUP BY PLAYER_NAME, TEAM_INITIALS, HOME_TEAM_NAME
+HAVING SUM(SUM_GOAL)>0
+ORDER BY Total_Goal DESC;
+
+/* 11)	Repeat 10. But only for the players who have more than 2 goals. */
+
+SELECT PLAYER_NAME, TEAM_INITIALS,HOME_TEAM_NAME, SUM(SUM_GOAL) AS Total_Goal
+FROM (
+    SELECT PLAYER_NAME,TEAM_INITIALS, LENGTH(EVENT) - LENGTH(REPLACE(EVENT, 'G', ''))
+    AS SUM_GOAL,HOME_TEAM_NAME
+    FROM (
+        WORLD_CUP_PLAYERS LEFT OUTER JOIN (
+            SELECT DISTINCT HOME_TEAM_NAME, HOME_TEAM_INITIALS FROM WORLD_CUP_MATCHES
+            ) ON TEAM_INITIALS = HOME_TEAM_INITIALS
+        )
+    WHERE LENGTH(EVENT) - LENGTH(REPLACE(EVENT, 'G', ''))>0
+    )
+GROUP BY PLAYER_NAME, TEAM_INITIALS, HOME_TEAM_NAME
+HAVING SUM(SUM_GOAL)>2
+ORDER BY Total_Goal DESC;
+
+/* 12)	Make a list of participating countries and their players, ordered in descending order of player names. */
+
+SELECT DISTINCT COUNTRY, PLAYER_NAME, TEAM_INITIALS
+FROM WORLD_CUP_PLAYERS INNER JOIN (
+    SELECT DISTINCT HOME_TEAM_INITIALS as TEAM_INITIAL, HOME_TEAM_NAME AS COUNTRY
+    FROM WORLD_CUP_MATCHES
+    UNION
+    SELECT DISTINCT AWAY_TEAM_INITIALS AS TEAM_INITIAL, AWAY_TEAM_NAME AS COUNTRY
+    FROM WORLD_CUP_MATCHES) WM on WORLD_CUP_PLAYERS.TEAM_INITIALS=WM.TEAM_INITIAL
+ORDER BY PLAYER_NAME DESC;
+
+/* 13)  Which country won the FIFA maximum number of times */
+
+SELECT WINNER AS COUNTRY, COUNT(*) AS COUNTRY_COUNT
+FROM WORLD_CUPS
+GROUP BY WINNER
+ORDER BY COUNTRY_COUNT DESC
+FETCH FIRST 1 ROW ONLY;

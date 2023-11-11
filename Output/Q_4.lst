@@ -1,0 +1,23 @@
+SQL> SELECT COUNTRY, COUNT(COUNTRY) AS PARTICIPATION FROM (SELECT * FROM (SELECT DISTINCT YEAR, HOME_TEAM_NAME AS COUNTRY FROM WORLD_CUP_MATCHES WHERE YEAR>2000) UNION (SELECT DISTINCT YEAR, AWAY_TEAM_NAME AS COUNTRY FROM WORLD_CUP_MATCHES WHERE YEAR>2000)) GROUP BY COUNTRY ORDER BY PARTICIPATION DESC FETCH NEXT 1 ROWS WITH TIES;
+
+COUNTRY                                            PARTICIPATION                
+-------------------------------------------------- -------------                
+Argentina                                                      4                
+USA                                                            4                
+Mexico                                                         4                
+Portugal                                                       4                
+Germany                                                        4                
+Brazil                                                         4                
+England                                                        4                
+Spain                                                          4                
+Japan                                                          4                
+Italy                                                          4                
+Korea Republic                                                 4                
+
+COUNTRY                                            PARTICIPATION                
+-------------------------------------------------- -------------                
+France                                                         4                
+
+12 rows selected.
+
+SQL> SPOOL OFF

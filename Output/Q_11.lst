@@ -1,0 +1,1063 @@
+SQL> SELECT PLAYER_NAME, TEAM_INITIALS,HOME_TEAM_NAME, SUM(SUM_GOAL) AS Total_Goal from (SELECT PLAYER_NAME,TEAM_INITIALS, LENGTH(EVENT) - LENGTH(REPLACE(EVENT, 'G', '')) AS SUM_GOAL,HOME_TEAM_NAME FROM (WORLD_CUP_PLAYERS LEFT OUTER JOIN (SELECT DISTINCT HOME_TEAM_NAME, HOME_TEAM_INITIALS FROM WORLD_CUP_MATCHES) ON TEAM_INITIALS = HOME_TEAM_INITIALS) WHERE LENGTH(EVENT) - LENGTH(REPLACE(EVENT, 'G', ''))>0) GROUP BY PLAYER_NAME, TEAM_INITIALS, HOME_TEAM_NAME HAVING SUM(SUM_GOAL)>2 ORDER BY Total_Goal DESC;
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+KLOSE                                                                           
+GER Germany                                                    17               
+                                                                                
+RONALDO                                                                         
+BRA Brazil                                                     14               
+                                                                                
+Gerd MUELLER                                                                    
+FRG Germany FR                                                 13               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Just FONTAINE                                                                   
+FRA France                                                     13               
+                                                                                
+PEL??? (Edson Arantes do Nascimento)                                            
+BRA Brazil                                                     12               
+                                                                                
+M???LLER                                                                        
+GER Germany                                                    11               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Sandor KOCSIS                                                                   
+HUN Hungary                                                    11               
+                                                                                
+Grzegorz LATO                                                                   
+POL Poland                                                     10               
+                                                                                
+Helmut RAHN                                                                     
+FRG Germany FR                                                 10               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+VAVA                                                                            
+BRA Brazil                                                      9               
+                                                                                
+Paolo ROSSI                                                                     
+ITA Italy                                                       9               
+                                                                                
+Uwe SEELER                                                                      
+FRG Germany FR                                                  9               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Karl-Heinz RUMMENIGGE                                                           
+FRG Germany FR                                                  9               
+                                                                                
+JAIRZINHO                                                                       
+BRA Brazil                                                      9               
+                                                                                
+Guillermo STABILE                                                               
+ARG Argentina                                                   8               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+LEONIDAS                                                                        
+BRA Brazil                                                      8               
+                                                                                
+Diego MARADONA                                                                  
+ARG Argentina                                                   8               
+                                                                                
+Oscar MIGUEZ                                                                    
+URU Uruguay                                                     8               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Teofilo CUBILLAS                                                                
+PER Peru                                                        8               
+                                                                                
+Gary LINEKER                                                                    
+ENG England                                                     8               
+                                                                                
+ADEMIR                                                                          
+BRA Brazil                                                      8               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+DAVID VILLA                                                                     
+ESP Spain                                                       7               
+                                                                                
+SNEIJDER                                                                        
+NED Netherlands                                                 7               
+                                                                                
+Lajos TICHY                                                                     
+HUN Hungary                                                     7               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+JAMES                                                                           
+COL Colombia                                                    7               
+                                                                                
+Johnny REP                                                                      
+NED Netherlands                                                 7               
+                                                                                
+Hans SCHAEFER                                                                   
+FRG Germany FR                                                  7               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+RIVALDO                                                                         
+BRA Brazil                                                      7               
+                                                                                
+Andrzej SZARMACH                                                                
+POL Poland                                                      7               
+                                                                                
+Mario KEMPES                                                                    
+ARG Argentina                                                   6               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+RIVELINO                                                                        
+BRA Brazil                                                      6               
+                                                                                
+BEBETO                                                                          
+BRA Brazil                                                      6               
+                                                                                
+SCH???RRLE                                                                      
+GER Germany                                                     6               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Oldrich NEJEDLY                                                                 
+TCH Czechoslovakia                                              6               
+                                                                                
+Max MORLOCK                                                                     
+FRG Germany FR                                                  6               
+                                                                                
+HIGUAIN                                                                         
+ARG Argentina                                                   6               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Zbigniew BONIEK                                                                 
+POL Poland                                                      6               
+                                                                                
+CARECA                                                                          
+BRA Brazil                                                      6               
+                                                                                
+Sepp HUEGI                                                                      
+SUI Switzerland                                                 6               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+ROBBEN                                                                          
+NED Netherlands                                                 6               
+                                                                                
+Rudi VOELLER                                                                    
+FRG Germany FR                                                  6               
+                                                                                
+Erich PROBST                                                                    
+AUT Austria                                                     6               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Gyula ZSENGELLER                                                                
+HUN Hungary                                                     5               
+                                                                                
+Roger MILLA                                                                     
+CMR Cameroon                                                    5               
+                                                                                
+Christian VIERI                                                                 
+ITA Italy                                                       5               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+CAHILL                                                                          
+AUS Australia                                                   5               
+                                                                                
+V. PERSIE                                                                       
+NED Netherlands                                                 5               
+                                                                                
+Gyorgy SAROSI                                                                   
+HUN Hungary                                                     5               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Juan SCHIAFFINO                                                                 
+URU Uruguay                                                     5               
+                                                                                
+MESSI                                                                           
+ARG Argentina                                                   5               
+                                                                                
+Salvatore SCHILLACI                                                             
+ITA Italy                                                       5               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+PODOLSKI                                                                        
+GER Germany                                                     5               
+                                                                                
+Pedro CEA                                                                       
+URU Uruguay                                                     5               
+                                                                                
+Silvio PIOLA                                                                    
+ITA Italy                                                       5               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Valentin IVANOV                                                                 
+URS Soviet Union                                                5               
+                                                                                
+Helmut HALLER                                                                   
+FRG Germany FR                                                  5               
+                                                                                
+GARRINCHA                                                                       
+BRA Brazil                                                      5               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+EUSEBIO (Eusebio da Silva Ferreira)                                             
+POR Portugal                                                    5               
+                                                                                
+ROM???RIO (Rom???rio de Souza Faria)                                            
+BRA Brazil                                                      5               
+                                                                                
+KLINSMANN                                                                       
+GER Germany                                                     5               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Tomas SKUHRAVY                                                                  
+TCH Czechoslovakia                                              5               
+                                                                                
+Franz BECKENBAUER                                                               
+FRG Germany FR                                                  5               
+                                                                                
+MORIENTES                                                                       
+ESP Spain                                                       5               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Kennet ANDERSSON                                                                
+SWE Sweden                                                      5               
+                                                                                
+Geoff HURST                                                                     
+ENG England                                                     5               
+                                                                                
+RAUL                                                                            
+ESP Spain                                                       5               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Davor SUKER                                                                     
+CRO Croatia                                                     5               
+                                                                                
+Peter McPARLAND                                                                 
+NIR Northern Ireland                                            5               
+                                                                                
+Andre ABEGGLEN                                                                  
+SUI Switzerland                                                 4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Preben ELKJAER LARSEN                                                           
+DEN Denmark                                                     4               
+                                                                                
+Igor CHISLENKO                                                                  
+URS Soviet Union                                                4               
+                                                                                
+VIERI                                                                           
+ITA Italy                                                       4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Marcelo SALAS                                                                   
+CHI Chile                                                       4               
+                                                                                
+Jan CEULEMANS                                                                   
+BEL Belgium                                                     4               
+                                                                                
+CHICO                                                                           
+BRA Brazil                                                      4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Zdenek ZIKAN                                                                    
+TCH Czechoslovakia                                              4               
+                                                                                
+Ralf EDSTROM                                                                    
+SWE Sweden                                                      4               
+                                                                                
+OSCAR                                                                           
+BRA Brazil                                                      4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+BAGGIO R.                                                                       
+ITA Italy                                                       4               
+                                                                                
+FORLAN                                                                          
+URU Uruguay                                                     4               
+                                                                                
+Angelo SCHIAVIO                                                                 
+ITA Italy                                                       4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Florian ALBERT                                                                  
+HUN Hungary                                                     4               
+                                                                                
+Valeriy PORKUYAN                                                                
+URS Soviet Union                                                4               
+                                                                                
+Hans KRANKL                                                                     
+AUT Austria                                                     4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+ZICO                                                                            
+BRA Brazil                                                      4               
+                                                                                
+CRESPO                                                                          
+ARG Argentina                                                   4               
+                                                                                
+Florin RADUCIOIU                                                                
+ROU Romania                                                     4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Emilio BUTRAGUENO                                                               
+ESP Spain                                                       4               
+                                                                                
+Alessandro ALTOBELLI                                                            
+ITA Italy                                                       4               
+                                                                                
+Edmund CONEN                                                                    
+GER Germany                                                     4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Estanislao BASORA                                                               
+ESP Spain                                                       4               
+                                                                                
+WALTER                                                                          
+FRG Germany FR                                                  4               
+                                                                                
+Anatoly BISHOVETS                                                               
+URS Soviet Union                                                4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Leopoldo LUQUE                                                                  
+ARG Argentina                                                   4               
+                                                                                
+Michel PLATINI                                                                  
+FRA France                                                      4               
+                                                                                
+Dominique ROCHETEAU                                                             
+FRA France                                                      4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+HERNANDEZ                                                                       
+MEX Mexico                                                      4               
+                                                                                
+Claudio CANIGGIA                                                                
+ARG Argentina                                                   4               
+                                                                                
+Ernest WILIMOWSKI                                                               
+POL Poland                                                      4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+ZARRA                                                                           
+ESP Spain                                                       4               
+                                                                                
+Gino COLAUSSI                                                                   
+ITA Italy                                                       4               
+                                                                                
+Agne SIMONSSON                                                                  
+SWE Sweden                                                      4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Ferenc BENE                                                                     
+HUN Hungary                                                     4               
+                                                                                
+Rene HOUSEMAN                                                                   
+ARG Argentina                                                   4               
+                                                                                
+PAULETA                                                                         
+POR Portugal                                                    4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Martin DAHLIN                                                                   
+SWE Sweden                                                      4               
+                                                                                
+Jorge VALDANO                                                                   
+ARG Argentina                                                   4               
+                                                                                
+KROOS                                                                           
+GER Germany                                                     4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+DEMPSEY                                                                         
+USA USA                                                         4               
+                                                                                
+DONOVAN                                                                         
+USA USA                                                         4               
+                                                                                
+Oleg SALENKO                                                                    
+RUS Russia                                                      4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+DAVID LUIZ                                                                      
+BRA Brazil                                                      4               
+                                                                                
+Bert PATENAUDE                                                                  
+USA USA                                                         4               
+                                                                                
+Alcides GHIGGIA                                                                 
+URU Uruguay                                                     4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Ferenc PUSKAS                                                                   
+HUN Hungary                                                     4               
+                                                                                
+Robert BALLAMAN                                                                 
+SUI Switzerland                                                 4               
+                                                                                
+Bobby CHARLTON                                                                  
+ENG England                                                     4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Daniel BERTONI                                                                  
+ARG Argentina                                                   4               
+                                                                                
+Lothar MATTHAEUS                                                                
+FRG Germany FR                                                  4               
+                                                                                
+Carlos BORGES                                                                   
+URU Uruguay                                                     4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Nandor HIDEGKUTI                                                                
+HUN Hungary                                                     4               
+                                                                                
+Drazen JERKOVIC                                                                 
+YUG Yugoslavia                                                  4               
+                                                                                
+Joe JORDAN                                                                      
+SCO Scotland                                                    4               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+TOMASSON                                                                        
+DEN Denmark                                                     4               
+                                                                                
+Kurt HAMRIN                                                                     
+SWE Sweden                                                      4               
+                                                                                
+Juan ANSELMO                                                                    
+URU Uruguay                                                     3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Sven JONASSON                                                                   
+SWE Sweden                                                      3               
+                                                                                
+Karl-Erik PALMER                                                                
+SWE Sweden                                                      3               
+                                                                                
+Zoltan CZIBOR                                                                   
+HUN Hungary                                                     3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Juan HOHBERG                                                                    
+URU Uruguay                                                     3               
+                                                                                
+Roger HUNT                                                                      
+ENG England                                                     3               
+                                                                                
+Luis ARTIME                                                                     
+ARG Argentina                                                   3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+DIRCEU                                                                          
+BRA Brazil                                                      3               
+                                                                                
+SOCRATES                                                                        
+BRA Brazil                                                      3               
+                                                                                
+C. SAMPAIO                                                                      
+BRA Brazil                                                      3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+BOUBA DIOP                                                                      
+SEN Senegal                                                     3               
+                                                                                
+HENRY                                                                           
+FRA France                                                      3               
+                                                                                
+BERGKAMP                                                                        
+NED Netherlands                                                 3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Carlos PEUCELLE                                                                 
+ARG Argentina                                                   3               
+                                                                                
+ROMEU                                                                           
+BRA Brazil                                                      3               
+                                                                                
+Hector SOCORRO                                                                  
+CUB Cuba                                                        3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Stig SUNDQVIST                                                                  
+SWE Sweden                                                      3               
+                                                                                
+BALTAZAR                                                                        
+BRA Brazil                                                      3               
+                                                                                
+Jackie FATTON                                                                   
+SUI Switzerland                                                 3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Leonel SANCHEZ                                                                  
+CHI Chile                                                       3               
+                                                                                
+Johan CRUYFF                                                                    
+NED Netherlands                                                 3               
+                                                                                
+Juergen KLINSMANN                                                               
+GER Germany                                                     3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+BATISTUTA                                                                       
+ARG Argentina                                                   3               
+                                                                                
+Tomas BROLIN                                                                    
+SWE Sweden                                                      3               
+                                                                                
+Jorge BURRUCHAGA                                                                
+ARG Argentina                                                   3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+MICHEL                                                                          
+ESP Spain                                                       3               
+                                                                                
+Jose Luis CAMINERO                                                              
+ESP Spain                                                       3               
+                                                                                
+???ZIL                                                                          
+GER Germany                                                     3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Gustav WETTERSTROM                                                              
+SWE Sweden                                                      3               
+                                                                                
+Alfred KOERNER                                                                  
+AUT Austria                                                     3               
+                                                                                
+JOSE TORRES                                                                     
+POR Portugal                                                    3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+FALCAO                                                                          
+BRA Brazil                                                      3               
+                                                                                
+Gerry ARMSTRONG                                                                 
+NIR Northern Ireland                                            3               
+                                                                                
+LARSSON                                                                         
+SWE Sweden                                                      3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+GERRARD                                                                         
+ENG England                                                     3               
+                                                                                
+CUEVAS                                                                          
+PAR Paraguay                                                    3               
+                                                                                
+Oliver BIERHOFF                                                                 
+GER Germany                                                     3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+WILMOTS                                                                         
+BEL Belgium                                                     3               
+                                                                                
+Pierre LITTBARSKI                                                               
+FRG Germany FR                                                  3               
+                                                                                
+SHAQIRI                                                                         
+SUI Switzerland                                                 3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+SUAREZ                                                                          
+URU Uruguay                                                     3               
+                                                                                
+HONDA                                                                           
+JPN Japan                                                       3               
+                                                                                
+Stefan DOBAY                                                                    
+ROU Romania                                                     3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Geza TOLDI                                                                      
+HUN Hungary                                                     3               
+                                                                                
+Suat MAMAT                                                                      
+TUR Turkey                                                      3               
+                                                                                
+Buhran SARGUN                                                                   
+TUR Turkey                                                      3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Theodor WAGNER                                                                  
+AUT Austria                                                     3               
+                                                                                
+Paul BREITNER                                                                   
+FRG Germany FR                                                  3               
+                                                                                
+Gigi RIVA                                                                       
+ITA Italy                                                       3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Dusan BAJEVIC                                                                   
+YUG Yugoslavia                                                  3               
+                                                                                
+Gabriel BATISTUTA                                                               
+ARG Argentina                                                   3               
+                                                                                
+RODRIGUEZ                                                                       
+ARG Argentina                                                   3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Juergen KLINSMANN                                                               
+FRG Germany FR                                                  3               
+                                                                                
+G???TZE                                                                         
+GER Germany                                                     3               
+                                                                                
+VITTEK                                                                          
+SVK Slovakia                                                    3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+PREGUINHO                                                                       
+BRA Brazil                                                      3               
+                                                                                
+Ivica BEK                                                                       
+YUG Yugoslavia                                                  3               
+                                                                                
+Jean NICOLAS                                                                    
+FRA France                                                      3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Harry ANDERSSON                                                                 
+SWE Sweden                                                      3               
+                                                                                
+Arne NYBERG                                                                     
+SWE Sweden                                                      3               
+                                                                                
+Laszlo KISS                                                                     
+HUN Hungary                                                     3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Bernard GENGHINI                                                                
+FRA France                                                      3               
+                                                                                
+BALLACK                                                                         
+GER Germany                                                     3               
+                                                                                
+Dennis BERGKAMP                                                                 
+NED Netherlands                                                 3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Enzo SCIFO                                                                      
+BEL Belgium                                                     3               
+                                                                                
+DJABOU                                                                          
+ALG Algeria                                                     3               
+                                                                                
+ALEXIS                                                                          
+CHI Chile                                                       3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+HUMMELS                                                                         
+GER Germany                                                     3               
+                                                                                
+E. VALENCIA                                                                     
+ECU Ecuador                                                     3               
+                                                                                
+Raimundo ORSI                                                                   
+ITA Italy                                                       3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Toza VESELINOVIC                                                                
+YUG Yugoslavia                                                  3               
+                                                                                
+JOSE AUGUSTO                                                                    
+POR Portugal                                                    3               
+                                                                                
+Gianni RIVERA                                                                   
+ITA Italy                                                       3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+ROBERTO DINAMITE                                                                
+BRA Brazil                                                      3               
+                                                                                
+ILHAN MANSIZ                                                                    
+TUR Turkey                                                      3               
+                                                                                
+JULIO SALINAS                                                                   
+ESP Spain                                                       3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+HAGI                                                                            
+ROU Romania                                                     3               
+                                                                                
+Alain GIRESSE                                                                   
+FRA France                                                      3               
+                                                                                
+KHEDIRA                                                                         
+GER Germany                                                     3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+L. FABIANO                                                                      
+BRA Brazil                                                      3               
+                                                                                
+PERACIO                                                                         
+BRA Brazil                                                      3               
+                                                                                
+Leopold KIELHOLZ                                                                
+SUI Switzerland                                                 3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Milan GALIC                                                                     
+YUG Yugoslavia                                                  3               
+                                                                                
+Eduard MALOFEYEV                                                                
+URS Soviet Union                                                3               
+                                                                                
+Walter SCHACHNER                                                                
+AUT Austria                                                     3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+TEVEZ                                                                           
+ARG Argentina                                                   3               
+                                                                                
+DIDI                                                                            
+BRA Brazil                                                      3               
+                                                                                
+Nat LOFTHOUSE                                                                   
+ENG England                                                     3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Leopold ANOUL                                                                   
+BEL Belgium                                                     3               
+                                                                                
+Roger PIANTONI                                                                  
+FRA France                                                      3               
+                                                                                
+AMARILDO                                                                        
+BRA Brazil                                                      3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+TOSTAO                                                                          
+BRA Brazil                                                      3               
+                                                                                
+Wolfgang OVERATH                                                                
+FRG Germany FR                                                  3               
+                                                                                
+Kazimierz DEYNA                                                                 
+POL Poland                                                      3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Thierry HENRY                                                                   
+FRA France                                                      3               
+                                                                                
+David PLATT                                                                     
+ENG England                                                     3               
+                                                                                
+STOITCHKOV                                                                      
+BUL Bulgaria                                                    3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+Andreas BREHME                                                                  
+FRG Germany FR                                                  3               
+                                                                                
+NEYMAR JR                                                                       
+BRA Brazil                                                      3               
+                                                                                
+A. GYAN                                                                         
+GHA Ghana                                                       3               
+                                                                                
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+TEA HOME_TEAM_NAME                                     TOTAL_GOAL               
+--- -------------------------------------------------- ----------               
+RUIZ B.                                                                         
+CRC Costa Rica                                                  3               
+                                                                                
+
+226 rows selected.
+
+SQL> SPOOL OFF

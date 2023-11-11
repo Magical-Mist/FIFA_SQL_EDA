@@ -1,0 +1,610 @@
+SQL> WITH TEMP1 AS
+  2  (
+  3      SELECT DISTINCT
+  4          YEAR,
+  5          MATCHID,
+  6          ROUNDID,
+  7          HOME_TEAM_INITIALS AS TEAM_INIT, HOME_TEAM_NAME AS TEAM_NAME
+  8      FROM
+  9          WORLD_CUP_MATCHES
+ 10      WHERE
+ 11          HOME_TEAM_GOALS > AWAY_TEAM_GOALS
+ 12      UNION
+ 13      SELECT DISTINCT
+ 14          YEAR,
+ 15          MATCHID,
+ 16          ROUNDID,
+ 17          AWAY_TEAM_INITIALS AS TEAM_INIT, AWAY_TEAM_NAME AS TEAM_NAME
+ 18      FROM
+ 19          WORLD_CUP_MATCHES
+ 20      WHERE
+ 21          HOME_TEAM_GOALS < AWAY_TEAM_GOALS
+ 22  ),
+ 23  TEMP2 AS (
+ 24      SELECT
+ 25          TEAM_INIT,
+ 26          COUNT(TEAM_INIT) AS WIN_COUNT
+ 27      FROM
+ 28          TEMP1
+ 29      GROUP BY
+ 30          TEAM_INIT
+ 31      ORDER BY
+ 32          WIN_COUNT DESC FETCH NEXT 1 ROWS ONLY
+ 33  )
+ 34  SELECT
+ 35      TEMP1.TEAM_INIT AS TEAM_INITIAL, TEMP1.TEAM_NAME,
+ 36      TEMP1.YEAR,
+ 37      WM.STADIUM,
+ 38      WM.CITY,
+ 39      TEMP2.WIN_COUNT
+ 40  FROM
+ 41      TEMP1
+ 42  INNER JOIN
+ 43      TEMP2 ON TEMP1.TEAM_INIT = TEMP2.TEAM_INIT
+ 44  INNER JOIN
+ 45      WORLD_CUP_MATCHES WM ON WM.MATCHID = TEMP1.MATCHID
+ 46                            AND WM.ROUNDID = TEMP1.ROUNDID;
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+BRA Brazil                                                   1954               
+Charmilles                                                                      
+Geneva                                                               70         
+                                                                                
+BRA Brazil                                                   1958               
+Rimnersvallen                                                                   
+Udevalla                                                             70         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+                                                                                
+BRA Brazil                                                   1958               
+Nya Ullevi                                                                      
+Gothenburg                                                           70         
+                                                                                
+BRA Brazil                                                   1958               
+Nya Ullevi                                                                      
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Gothenburg                                                           70         
+                                                                                
+BRA Brazil                                                   1958               
+Rasunda Stadium                                                                 
+Solna                                                                70         
+                                                                                
+BRA Brazil                                                   1958               
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Rasunda Stadium                                                                 
+Solna                                                                70         
+                                                                                
+BRA Brazil                                                   1962               
+Estadio Sausalito                                                               
+Vina Del Mar                                                         70         
+                                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+BRA Brazil                                                   1962               
+Estadio Sausalito                                                               
+Vina Del Mar                                                         70         
+                                                                                
+BRA Brazil                                                   1962               
+Estadio Sausalito                                                               
+Vina Del Mar                                                         70         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+                                                                                
+BRA Brazil                                                   1962               
+Nacional                                                                        
+Santiago De Chile                                                    70         
+                                                                                
+BRA Brazil                                                   1962               
+Nacional                                                                        
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Santiago De Chile                                                    70         
+                                                                                
+BRA Brazil                                                   1966               
+Goodison Park                                                                   
+Liverpool                                                            70         
+                                                                                
+BRA Brazil                                                   1930               
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Estadio Centenario                                                              
+Montevideo                                                           70         
+                                                                                
+BRA Brazil                                                   1938               
+Stade de la Meinau                                                              
+Strasbourg                                                           70         
+                                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+BRA Brazil                                                   1938               
+Stade du Parc Lescure                                                           
+Bordeaux                                                             70         
+                                                                                
+BRA Brazil                                                   1938               
+Stade du Parc Lescure                                                           
+Bordeaux                                                             70         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+                                                                                
+BRA Brazil                                                   1950               
+Maracan??? - Est???dio Jornalista M???rio Filho                                 
+Rio De Janeiro                                                       70         
+                                                                                
+BRA Brazil                                                   1950               
+Maracan??? - Est???dio Jornalista M???rio Filho                                 
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Rio De Janeiro                                                       70         
+                                                                                
+BRA Brazil                                                   1950               
+Maracan??? - Est???dio Jornalista M???rio Filho                                 
+Rio De Janeiro                                                       70         
+                                                                                
+BRA Brazil                                                   1950               
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Maracan??? - Est???dio Jornalista M???rio Filho                                 
+Rio De Janeiro                                                       70         
+                                                                                
+BRA Brazil                                                   1978               
+Estadio Jos??? Mar???a Minella                                                  
+Mar Del Plata                                                        70         
+                                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+BRA Brazil                                                   1978               
+San Martin                                                                      
+Mendoza                                                              70         
+                                                                                
+BRA Brazil                                                   1978               
+San Martin                                                                      
+Mendoza                                                              70         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+                                                                                
+BRA Brazil                                                   1994               
+Stanford Stadium                                                                
+San Francisco                                                        70         
+                                                                                
+BRA Brazil                                                   1994               
+Stanford Stadium                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+San Francisco                                                        70         
+                                                                                
+BRA Brazil                                                   1978               
+El Monumental - Estadio Monumental Antonio Vespuci                              
+Buenos Aires                                                         70         
+                                                                                
+BRA Brazil                                                   1982               
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Ramon Sanchez Pizjuan                                                           
+Seville                                                              70         
+                                                                                
+BRA Brazil                                                   1982               
+Benito Villamarin                                                               
+Seville                                                              70         
+                                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+BRA Brazil                                                   1982               
+Benito Villamarin                                                               
+Seville                                                              70         
+                                                                                
+BRA Brazil                                                   1982               
+Sarria                                                                          
+Barcelona                                                            70         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+                                                                                
+BRA Brazil                                                   1986               
+Jalisco                                                                         
+Guadalajara                                                          70         
+                                                                                
+BRA Brazil                                                   1986               
+Jalisco                                                                         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Guadalajara                                                          70         
+                                                                                
+BRA Brazil                                                   1986               
+Jalisco                                                                         
+Guadalajara                                                          70         
+                                                                                
+BRA Brazil                                                   1986               
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Jalisco                                                                         
+Guadalajara                                                          70         
+                                                                                
+BRA Brazil                                                   1990               
+Stadio delle Alpi                                                               
+Turin                                                                70         
+                                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+BRA Brazil                                                   1990               
+Stadio delle Alpi                                                               
+Turin                                                                70         
+                                                                                
+BRA Brazil                                                   1990               
+Stadio delle Alpi                                                               
+Turin                                                                70         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+                                                                                
+BRA Brazil                                                   1970               
+Jalisco                                                                         
+Guadalajara                                                          70         
+                                                                                
+BRA Brazil                                                   1970               
+Jalisco                                                                         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Guadalajara                                                          70         
+                                                                                
+BRA Brazil                                                   1970               
+Jalisco                                                                         
+Guadalajara                                                          70         
+                                                                                
+BRA Brazil                                                   1970               
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Jalisco                                                                         
+Guadalajara                                                          70         
+                                                                                
+BRA Brazil                                                   1970               
+Jalisco                                                                         
+Guadalajara                                                          70         
+                                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+BRA Brazil                                                   1970               
+Estadio Azteca                                                                  
+Mexico City                                                          70         
+                                                                                
+BRA Brazil                                                   1974               
+Parkstadion                                                                     
+Gelsenkirchen                                                        70         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+                                                                                
+BRA Brazil                                                   1974               
+Niedersachsenstadion                                                            
+Hanover                                                              70         
+                                                                                
+BRA Brazil                                                   1974               
+Niedersachsenstadion                                                            
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Hanover                                                              70         
+                                                                                
+BRA Brazil                                                   2010               
+Soccer City Stadium                                                             
+Johannesburg                                                         70         
+                                                                                
+BRA Brazil                                                   1994               
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Stanford Stadium                                                                
+San Francisco                                                        70         
+                                                                                
+BRA Brazil                                                   1994               
+Cotton Bowl                                                                     
+Dallas                                                               70         
+                                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+BRA Brazil                                                   1994               
+Rose Bowl                                                                       
+Los Angeles                                                          70         
+                                                                                
+BRA Brazil                                                   1998               
+Stade de France                                                                 
+Saint-Denis                                                          70         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+                                                                                
+BRA Brazil                                                   1998               
+La Beaujoire                                                                    
+Nantes                                                               70         
+                                                                                
+BRA Brazil                                                   1998               
+Parc des Princes                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Paris                                                                70         
+                                                                                
+BRA Brazil                                                   1998               
+La Beaujoire                                                                    
+Nantes                                                               70         
+                                                                                
+BRA Brazil                                                   2002               
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Munsu Football Stadium                                                          
+Ulsan                                                                70         
+                                                                                
+BRA Brazil                                                   2002               
+Jeju World Cup Stadium                                                          
+Jeju                                                                 70         
+                                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+BRA Brazil                                                   2002               
+Suwon World Cup Stadium                                                         
+Suwon                                                                70         
+                                                                                
+BRA Brazil                                                   2002               
+Kobe Wing Stadium                                                               
+Kobe                                                                 70         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+                                                                                
+BRA Brazil                                                   2002               
+Shizuoka Stadium Ecopa                                                          
+Shizuoka                                                             70         
+                                                                                
+BRA Brazil                                                   2002               
+Saitama Stadium 2002                                                            
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Saitama                                                              70         
+                                                                                
+BRA Brazil                                                   2002               
+International Stadium Yokohama                                                  
+Yokohama                                                             70         
+                                                                                
+BRA Brazil                                                   2006               
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Olympiastadion                                                                  
+Berlin                                                               70         
+                                                                                
+BRA Brazil                                                   2006               
+FIFA World Cup Stadium, Munich                                                  
+Munich                                                               70         
+                                                                                
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+BRA Brazil                                                   2006               
+FIFA World Cup Stadium, Dortmund                                                
+Dortmund                                                             70         
+                                                                                
+BRA Brazil                                                   2006               
+FIFA World Cup Stadium, Dortmund                                                
+Dortmund                                                             70         
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+                                                                                
+BRA Brazil                                                   2010               
+Ellis Park Stadium                                                              
+Johannesburg                                                         70         
+                                                                                
+BRA Brazil                                                   2010               
+Ellis Park Stadium                                                              
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Johannesburg                                                         70         
+                                                                                
+BRA Brazil                                                   2014               
+Arena de Sao Paulo                                                              
+Sao Paulo                                                            70         
+                                                                                
+BRA Brazil                                                   2014               
+
+TEA TEAM_NAME                                                YEAR               
+--- -------------------------------------------------- ----------               
+STADIUM                                                                         
+--------------------------------------------------------------------------------
+CITY                                                          WIN_COUNT         
+------------------------------------------------------------ ----------         
+Estadio Nacional                                                                
+Brasilia                                                             70         
+                                                                                
+BRA Brazil                                                   2014               
+Estadio Castelao                                                                
+Fortaleza                                                            70         
+                                                                                
+
+70 rows selected.
+
+SQL> SPOOL OFF

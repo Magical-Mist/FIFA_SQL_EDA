@@ -1,0 +1,7 @@
+SQL> SELECT COUNT(AWAY_TEAM_NAME) AS USA_AWAYTEAM_NO FROM WORLD_CUP_MATCHES WHERE AWAY_TEAM_NAME='USA';
+
+USA_AWAYTEAM_NO                                                                 
+---------------                                                                 
+             18                                                                 
+
+SQL> SPOOL OFF

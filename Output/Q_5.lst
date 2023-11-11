@@ -1,0 +1,7 @@
+SQL> SELECT COUNT(*) AS USA_QUALIFIED_NO FROM (SELECT DISTINCT YEAR FROM WORLD_CUP_MATCHES WHERE HOME_TEAM_NAME='USA' OR AWAY_TEAM_NAME='USA');
+
+USA_QUALIFIED_NO                                                                
+----------------                                                                
+              10                                                                
+
+SQL> SPOOL OFF

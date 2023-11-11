@@ -1,0 +1,11 @@
+SQL> SELECT WINNER AS COUNTRY, COUNT(*) AS COUNTRY_COUNT
+  2  FROM WORLD_CUPS
+  3  GROUP BY WINNER
+  4  ORDER BY COUNTRY_COUNT DESC
+  5  FETCH FIRST 1 ROW ONLY;
+
+COUNTRY                             COUNTRY_COUNT                               
+----------------------------------- -------------                               
+Brazil                                          5                               
+
+SQL> spool off

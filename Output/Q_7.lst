@@ -1,0 +1,22 @@
+SQL> SELECT PLAYER_NAME, GOALS AS MAX_GOALS
+  2  FROM (
+  3      SELECT
+  4          PLAYER_NAME,
+  5          SUM(LENGTH(EVENT) - LENGTH(REPLACE(EVENT, 'G', ''))) AS GOALS
+  6      FROM
+  7          WORLD_CUP_PLAYERS
+  8      WHERE LENGTH(EVENT) - LENGTH(REPLACE(EVENT, 'G', '')) > 0
+  9      GROUP BY PLAYER_NAME
+ 10  )
+ 11  ORDER BY GOALS DESC
+ 12  FETCH NEXT 1 ROWS WITH TIES;
+
+PLAYER_NAME                                                                     
+--------------------------------------------------------------------------------
+ MAX_GOALS                                                                      
+----------                                                                      
+KLOSE                                                                           
+        17                                                                      
+                                                                                
+
+SQL> SPOOL OFF

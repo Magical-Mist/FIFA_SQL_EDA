@@ -1,0 +1,7 @@
+SQL> select CITY, count(*) from WORLD_CUP_MATCHES group by CITY having count(CITY) = (SELECT MAX(CITY_MAX) FROM (SELECT COUNT(*) AS CITY_MAX, CITY FROM WORLD_CUP_MATCHES GROUP BY CITY));
+
+CITY                                                           COUNT(*)         
+------------------------------------------------------------ ----------         
+Mexico City                                                          23         
+
+SQL> SPOOL OFF
