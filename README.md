@@ -1,6 +1,6 @@
 # FIFA WORLD CUP - EDA ⚽
 
-This project endeavors to comprehensively investigate the FIFA dataset through the utilization of structured query language (SQL). The intricacies of the dataset were meticulously scrutinized by executing queries on an Oracle database, with the ensuing results meticulously documented to provide a comprehensive exploratory data analysis (EDA) output. The objective of this endeavor is to extract meaningful insights and patterns inherent within the FIFA dataset, thereby contributing to a deeper understanding of the intricate dynamics encapsulated within the realm of football analytics.
+This project comprehensively investigates the FIFA dataset through the utilization of structured query language (SQL). The intricacies of the dataset were scrutinized by executing queries on an Oracle database, with the results meticulously documented to provide a comprehensive exploratory data analysis (EDA) output. The objective of this endeavor is to extract meaningful insights and patterns inherent within the FIFA dataset, thereby contributing to a deeper understanding of the intricate dynamics encapsulated within the realm of football analytics.
 
 
 ## How to Run?
